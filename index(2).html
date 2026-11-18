@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10243a">
+  <meta name="description" content="HERYTA - Sistema de Gestão Contabilística offline para pequenas empresas.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/style.css">
+  <title>HERYTA | Gestão Contabilística</title>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="HERYTA início">
+      <span class="brand-mark">H</span>
+      <span><strong>HERYTA</strong><small>GESTÃO CONTABILÍSTICA</small></span>
+    </a>
+    <div class="top-actions"><span id="connection-status" class="status">A iniciar…</span><button id="install-button" class="ghost hidden">Instalar</button></div>
+  </header>
+
+  <main>
+    <section id="login-view" class="panel narrow">
+      <p class="eyebrow">ACESSO LOCAL</p><h1>Bem-vindo</h1>
+      <p class="muted">Os dados ficam guardados neste dispositivo e neste navegador.</p>
+      <label>Nome de utilizador<input id="login-username" autocomplete="username" placeholder="Ex.: admin"></label>
+      <label>Palavra-passe<input id="login-password" type="password" autocomplete="current-password" placeholder="Palavra-passe"></label>
+      <button id="login-button" class="primary full">Entrar</button>
+      <p id="login-message" class="message" role="status"></p>
+      <div id="first-setup" class="setup-box hidden">
+        <strong>Primeira utilização</strong>
+        <p class="muted">Crie o primeiro administrador deste dispositivo.</p>
+        <label>Nome completo<input id="first-name" placeholder="Nome do administrador"></label>
+        <label>Nome de utilizador<input id="first-username" value="admin" autocomplete="username"></label>
+        <label>Palavra-passe<input id="first-password" type="password" minlength="8" autocomplete="new-password" placeholder="Mínimo de 8 caracteres"></label>
+        <button id="create-admin" class="secondary full">Criar administrador</button>
+      </div>
+    </section>
+
+    <section id="app-view" class="hidden">
+      <div class="welcome">
+        <div><p class="eyebrow">PAINEL DE CONTROLO</p><h1>Visão geral</h1><p id="welcome-user" class="muted"></p></div>
+        <button id="logout-button" class="secondary">Terminar sessão</button>
+      </div>
+      <div class="metrics">
+        <article class="metric"><span>Empresas</span><strong id="company-count">0</strong></article>
+        <article class="metric"><span>Utilizadores</span><strong id="user-count">0</strong></article>
+        <article class="metric"><span>Estado</span><strong class="green">Offline disponível</strong></article>
+      </div>
+      <section class="panel">
+        <div class="section-head"><div><p class="eyebrow">ORGANIZAÇÃO</p><h2>Empresas</h2></div></div>
+        <form id="company-form" class="form-grid">
+          <label>Nome da empresa<input id="company-name" required maxlength="140" placeholder="Nome legal ou comercial"></label>
+          <label>NUIT (opcional)<input id="company-nuit" maxlength="30" placeholder="NUIT"></label>
+          <label>Moeda<select id="company-currency"><option value="MZN">MZN – Metical</option></select></label>
+          <label>Exercício económico<input id="company-year" type="number" min="2000" max="2100" required></label>
+          <button class="primary" type="submit">Adicionar empresa</button>
+        </form>
+        <div id="company-list" class="items"><p class="muted">Ainda não existem empresas.</p></div>
+      </section>
+      <section class="panel">
+        <div class="section-head"><div><p class="eyebrow">ACESSOS LOCAIS</p><h2>Utilizadores</h2></div></div>
+        <form id="user-form" class="form-grid">
+          <label>Nome completo<input id="new-fullname" required maxlength="100"></label>
+          <label>Nome de utilizador<input id="new-username" required minlength="3" maxlength="40"></label>
+          <label>Palavra-passe<input id="new-password" type="password" required minlength="8" autocomplete="new-password"></label>
+          <label>Perfil<select id="new-role"><option value="operator">Operador</option><option value="accountant">Contabilista</option><option value="admin">Administrador</option></select></label>
+          <button class="primary" type="submit">Criar utilizador</button>
+        </form>
+        <div id="user-list" class="items"></div>
+      </section>
+      <section class="panel notice">
+        <strong>Fundação do sistema concluída</strong>
+        <p>Esta versão prepara empresas e utilizadores locais. Plano de contas, Diário, Razão e lançamentos contabilísticos serão desenvolvidos na fase seguinte.</p>
+      </section>
+    </section>
+  </main>
+  <footer>HERYTA SOLUTIONS · Aplicação PWA · Dados locais neste dispositivo</footer>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
